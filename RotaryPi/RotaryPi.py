@@ -1,2 +1,3 @@
-def configure_gpio():
+
+def configure_gpio(gpio):
     pass
