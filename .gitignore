@@ -1,0 +1,11 @@
+.cache/
+
+PiTooth-Resources.zip
+keymap.py
+sdp_record.xml
+
+pirot_venv/
+
+*.swp
+
+__pycache__
