@@ -1,5 +1,3 @@
-#!pirot_venv/bin/python
-
 import RPi.GPIO as GPIO
 
 class RotaryReaderConfig():
@@ -35,20 +33,17 @@ if __name__ == '__main__':
     previous_dialing =  0
     current_dialing = 0
     while True:
-        current_number = GPIO.input(r.NUMBER_INPUT)
-        current_dialing = GPIO.input(r.DIALING_INPUT)
-        if(current_dialing != previous_dialing):
-            if(current_dialing == 0):
-                print("dialing ended")
-            else:
-                print("dialing now")
+        GPIO.wait_for_edge(r.DIALING_INPUT, GPIO.RISING)
+        print("dialing now")
+        number_pulse_count = 0
+        while(GPIO.input(r.DIALING_INPUT) == True):
+            current_number = GPIO.input(r.NUMBER_INPUT)
+            if((current_number != previous_number) and (current_number==1)):
+                print("number incremented")
+                number_pulse_count += 1
 
-        previous_number = current_number
-        previous_dialing = current_dialing
+            previous_number = current_number
 
+        print("dialing ended, number was: {0}".format(number_pulse_count))
 
-
-
-
-
-
+    
