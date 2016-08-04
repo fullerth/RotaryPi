@@ -1,11 +1,11 @@
-import unittest
+from unittest import TestCase
 from unittest.mock import MagicMock
 
 import RPi.GPIO as GPIO
 
 import RotaryPi.RotaryPi as RotaryPi
 
-class test_GPIO(unittest.TestCase):
+class test_GPIO(TestCase):
     def test_configure_gpio(self):
         mockGPIO = MagicMock()
         RotaryPi.configure_gpio(mockGPIO)
